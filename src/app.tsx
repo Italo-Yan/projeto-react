@@ -8,13 +8,11 @@ import { Pagination } from './components/pagination'
 import { useQuery } from '@tanstack/react-query'
 
 export function App() {
-  const data = useQuery({
+  const { data: tagsResponse, isLoading } = useQuery({
     queryKey: ['get-tags'],
     queryFn: async () => {
       const response = await fetch(`http://localhost:3333/tags?_page=1&_per_page=10&title=10`)
       const data = await response.json()
-
-      console.log(data)
 
       return data
     },
